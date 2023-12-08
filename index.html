@@ -1,0 +1,94 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deciaml To Binary Converter</title>
+<style>
+    * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: space-around;
+}
+
+.container {
+  width: 50%;
+  background: crimson;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container input {
+  padding: 10px 20px;
+  margin-left: 10px;
+  outline: none;
+}
+
+.container .result-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.results-container {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+  </head>
+  <body>
+    <section class="container">
+      <input type="number" name="number" id="number" />
+      <input type="button" value="Check" class="result-btn" />
+    </section>
+
+    <section class="results-container"></section>
+
+
+    <script>
+        let result = document.querySelector(".result-btn");
+
+result.addEventListener("click", decimal);
+
+function decimal() {
+  let decimal = document.getElementById("number").value;
+  let tempDecimal;
+  let rem = 0;
+  let binary = 0;
+  let place = 1;
+
+  tempDecimal = decimal;
+
+  while (tempDecimal > 0) {
+    rem = tempDecimal % 2;
+    binary = binary + rem * place;
+    tempDecimal = parseInt(tempDecimal / 2);
+    place = place * 10;
+  }
+
+  const h1 = document.createElement("h1");
+  h1.innerHTML = `${binary}`;
+
+  //   h1.style.border = "2px solid black";
+  //   h1.style.padding = "10px";
+  //   h1.style.marign = "5px";
+
+  const container = document.querySelector(".results-container");
+  container.append(h1);
+}
+
+    </script>
+
+  </body>
+</html>
